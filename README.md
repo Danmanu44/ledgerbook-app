@@ -1,4 +1,4 @@
-# Getting Started with Ledger Book 
+# Getting Started with Ledger Book-App 
 
 This project was design to help individual to track his client debt and contact info
 
