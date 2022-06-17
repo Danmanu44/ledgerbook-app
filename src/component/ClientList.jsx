@@ -15,11 +15,14 @@ const ClientList =(props)=>{
     console.log("####### id:"+id);
      props.getClientId(id);
   }
+  const updateClient =(client)=>{
+    props.updateClientHandler(client)
+  }
     const Clients=props.clients.map((client)=>{
         return (
            
             
-              <ClientCard client={client} clickHandler={deletClientHandler}  key={client.id}/>
+              <ClientCard client={client} clickHandler={deletClientHandler}  updateClientHandler={updateClient} key={client.id}/>
         
             );
     });

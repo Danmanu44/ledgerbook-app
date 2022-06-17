@@ -11,20 +11,24 @@ import CardActions from '@mui/material/CardActions';
 import user from '..//images/john.png';
 import DeleteIcon from '@mui/icons-material/DeleteForever';
 import Button from '@mui/material/Button';
+import UpdateClient from './UpdateClient'
 
 
 const ClientCard = (props)=>{
+  const client = props.client;
     const {id,name,phoneNumber,email,balance} =props.client;
-    const clickHandler=(id)=>{
-        console.log("handler here "+id);
+    const updateClient =(client)=>{
+      props.updateClientHandler(client);
+
     }
+   
     return (
         <div >
             <br></br>
             <Card><CardContent> 
         <ListItem alignItems="flex-start">
        <ListItemAvatar>
-         <Avatar alt="Remy Sharp" src={user} />
+         <Avatar sx={{width:'100px' ,height:'100px', marginRight:'10px'}} alt="Remy Sharp" src={user} />
          
        </ListItemAvatar>
        <ListItemText
@@ -38,12 +42,7 @@ const ClientCard = (props)=>{
              {name}
             </Typography>
            
-            <Typography
-            sx={{ display: 'inline', float:'right'}}
-             color="red"
-            >
-           <Button  onClick={ props.clickHandler(id)} sx={{ display: 'inline',color:'red', float:'right'}} endIcon={<DeleteIcon />}></Button>
-            </Typography>
+           
           </React.Fragment>
             }
          secondary={
@@ -56,18 +55,33 @@ const ClientCard = (props)=>{
              >
               {phoneNumber}
              </Typography>
-             {email}
+             <Typography
+               
+              
+               variant="body2"
+               color="text.primary"
+             >
+              {email}
+             </Typography>
+            
              <Typography
               color="blue"
              >
               Account Balance : {balance}
              </Typography>
+             
            </React.Fragment>
+           
          }
        />
      </ListItem>
      <Divider variant="inset" component="li" />
         </CardContent> 
+        <CardActions>
+        
+        <UpdateClient client = {client} updateClient={updateClient}/> <Button size="small" variant="outlined" onClick={()=>props.clickHandler(id) } sx={{ display: 'inline',color:'red', float:'right',marginLeft:'100px'}} endIcon={<DeleteIcon />}></Button>
+           
+      </CardActions>
       </Card>
 
     </div>
