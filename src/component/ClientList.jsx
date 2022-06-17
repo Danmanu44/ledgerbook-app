@@ -18,11 +18,17 @@ const ClientList =(props)=>{
   const updateClient =(client)=>{
     props.updateClientHandler(client)
   }
+  const updateTransaction =(transaction,client)=>{
+    console.log("##### ClientList"+transaction.amount+client.name)
+    props.addTransactiontHandler(transaction,client);
+   
+
+  }
     const Clients=props.clients.map((client)=>{
         return (
            
             
-              <ClientCard client={client} clickHandler={deletClientHandler}  updateClientHandler={updateClient} key={client.id}/>
+              <ClientCard client={client} clickHandler={deletClientHandler}  updateClientHandler={updateClient} updateTransactionHandler={updateTransaction} key={client.id}/>
         
             );
     });

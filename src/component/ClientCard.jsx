@@ -12,13 +12,21 @@ import user from '..//images/john.png';
 import DeleteIcon from '@mui/icons-material/DeleteForever';
 import Button from '@mui/material/Button';
 import UpdateClient from './UpdateClient'
+import Deposit from './Deposit';
 
 
 const ClientCard = (props)=>{
   const client = props.client;
+  const transaction = props.transaction;
     const {id,name,phoneNumber,email,balance} =props.client;
     const updateClient =(client)=>{
       props.updateClientHandler(client);
+
+    }
+    const updateTransaction =(transaction,client)=>{
+      console.log("#### ClientCard"+transaction.amount);
+      props.updateTransactionHandler(transaction,client);
+      
 
     }
    
@@ -79,7 +87,7 @@ const ClientCard = (props)=>{
         </CardContent> 
         <CardActions>
         
-        <UpdateClient client = {client} updateClient={updateClient}/> <Button size="small" variant="outlined" onClick={()=>props.clickHandler(id) } sx={{ display: 'inline',color:'red', float:'right',marginLeft:'100px'}} endIcon={<DeleteIcon />}></Button>
+        <UpdateClient client = {client} updateClient={updateClient}/><Deposit client = {client} updateTransaction={updateTransaction} transaction={transaction}/> <Button size="small" variant="outlined" onClick={()=>props.clickHandler(id) } sx={{ display: 'inline',color:'red', float:'right',marginLeft:'100px'}} endIcon={<DeleteIcon />}></Button>
            
       </CardActions>
       </Card>

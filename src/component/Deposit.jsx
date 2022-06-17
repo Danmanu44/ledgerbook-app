@@ -14,6 +14,8 @@ import SaveIcon from '@mui/icons-material/Save';
 import Stack from '@mui/material/Stack';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
+import EditIcon from '@mui/icons-material/Edit'
+import SavingsRoundedIcon from '@mui/icons-material/SavingsRounded';
 
 
 
@@ -34,19 +36,47 @@ function MyFormHelperText() {
 
 export default function FormDialog(props) {
 
+  const [client, setClient] = React.useState({
+    id:'',
+  name: '',
+  phoneNumber: '',
+  email: '',
+  balance: 0
  
-  const add = (e)=>{
+});
+const [transaction,setTransaction] = React.useState({
+  id:'',
+  date_posted:'',
+  activity:'',
+  amount:0,
+  balance_before:0,
+  balance_after:0,
+  note:''
+})
+ 
+  const update = (e)=>{
     
    
   
-    if(client.name==="" || client.phoneNumber===""){
-      alert("Name and Phone Number must be provided!");
+    if(transaction.amount==="" ){
+      alert("Deposit Amount must be provided!");
     }
-    client.id= Number(new Date());
-    client.balance=0;
-    props.addClientHandler(client);
-    setClient({name:'',phoneNumber:'',email:''});
+    else{
+    // client.id= Number(new Date());
+    // client.balance=0;
+    console.log("###### Deposit "+transaction.amount);
+    transaction.activity="Deposit";
+    transaction.balance_before=client.balance;
+    transaction.balance_after= Number(client.balance)+(Number(transaction.amount));
+    transaction.date_posted= new Date();
+    client.balance =transaction.balance_after;
+    
+    props.updateTransaction(transaction,client);
+    
+
+    setTransaction({id:'',date_posted:'', note:'', activity:'',amount:'',balance_before:'',balance_after:''});
     handleClose();
+    }
   
   }
  
@@ -59,29 +89,27 @@ export default function FormDialog(props) {
       •
     </Box>
   );
-const [client, setClient] = React.useState({
-      id:'',
-    name: '',
-    phoneNumber: '',
-    email: '',
-    balance: 0
-   
-  });
 
   const handleChange = (prop) => (event) => {
-    setClient({ ...client, [prop]: event.target.value });
+    setTransaction({ ...transaction, [prop]: event.target.value });
+    console.log(transaction.amount)
+    
     
   };
 
  
 
-
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   const [open, setOpen] = React.useState(false);
   
  
 
   const handleClickOpen = () => {
+    setClient(props.client);
     setOpen(true);
+
   };
 
   const handleClose = () => {
@@ -92,15 +120,15 @@ const [client, setClient] = React.useState({
   return (
     <div>
      
-        <br></br>
-      <Button  variant="outlined" onClick={handleClickOpen}>
-        Add New Client
-      </Button>
+        
+      
+      <Button variant='outlined' size='small' onClick={handleClickOpen} sx={{ display: 'inline',color:'blue', float:'right'}} endIcon={<SavingsRoundedIcon />}></Button>
+
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add New Client</DialogTitle>
+        <DialogTitle>Deposit</DialogTitle>
         <DialogContent>
          
-        <form onSubmit={add}>
+        <form onSubmit={update}>
          <FormControl fullWidth  variant="standard">
          <TextField
          
@@ -108,7 +136,7 @@ const [client, setClient] = React.useState({
          id="tel"
          label="Full Name"
          value={client.name}
-      
+         disabled
          type="text"
          fullWidth
          variant="standard"
@@ -118,7 +146,7 @@ const [client, setClient] = React.useState({
         <TextField
                  
          value={client.phoneNumber}
-
+         disabled
          margin="dense"
          id="tel"
          label="Phone Number"
@@ -130,15 +158,40 @@ const [client, setClient] = React.useState({
         <TextField
        
          value={client.email}
-         
+         disabled
          margin="dense"
-         id="name"
+         id="email"
          label="Email Address"
          type="email"
          fullWidth
          variant="standard"
          onChange={handleChange('email')}
        />
+        <TextField
+       
+       value={transaction.amount}
+       
+       margin="dense"
+       id="amount"
+       label="Amount Deposited"
+       type="number"
+       fullWidth
+       variant="standard"
+       onChange={handleChange('amount')}
+     />
+     <TextField
+       
+       value={transaction.note}
+       
+       margin="dense"
+       id="note"
+       label="Note"
+       type="text"
+       fullWidth
+       variant="standard"
+       onChange={handleChange('note')}
+     />
+       
         
      </FormControl>
        
@@ -147,7 +200,7 @@ const [client, setClient] = React.useState({
       <Button variant="outlined" onClick={handleClose} startIcon={<CancelIcon />}>
         Cancel
       </Button>
-      <Button  variant="contained"  onClick={add} endIcon={<SaveIcon />}>
+      <Button  variant="contained"  onClick={update} endIcon={<SaveIcon />}>
         Save
       </Button>
     </Stack>
