@@ -135,61 +135,72 @@ const [transaction,setTransaction] = React.useState({
           <ListItem alignItems="flex-start">
          
          <ListItemText
-           primary={  <React.Fragment> 
+          primary={
+            <React.Fragment> 
               <Typography
                 sx={{ display: 'inline' }}
                 component="span"
                 variant="body2"
-               
+                color="text.primary"
+              >
+               {Date(transaction.date_posted)}
+              </Typography>
+             
+            </React.Fragment>
+            
+          }
+           secondary={  <React.Fragment> 
+              <Typography
+                
+                variant="body2"
+
+                color="blue"
               >
                Activity : {transaction.activity}
               </Typography>
+              <Typography
+                sx={{  }}
+               
+                variant="body2"
+
+                color="text.primary"
+              >
+               Description : {transaction.note}
+              </Typography>
              
               <Typography
-                sx={{ color:'blue' }}
+                sx={{  }}
                component="div"
-                variant="body2"
-               
+                variant="body1"
+                color="blue"
               >
-               Amount <br/>
-                <span>{transaction.amount}</span>
+               Amount 
+                : {transaction.amount}
               </Typography>
               <Typography
                 sx={{ color:'blue' }}
                component="div"
-                variant="body2"
+                variant="body1"
                
               >
-               Previous Balance <br/>
-                {transaction.balance_before}
+               Previous Balance 
+                :{transaction.balance_before}
               </Typography>
               <Typography
-                sx={{ color:'blue' }}
+                sx={{  }}
                component="div"
-                variant="body2"
-               
+                variant="body1"
+                color="blue"
               >
-               Balance <br/>
-                {transaction.balance_after}
+               Balance 
+                : {transaction.balance_after}
               </Typography>
               
               
             </React.Fragment>
+            
               }
-           secondary={
-             <React.Fragment> 
-               <Typography
-                 sx={{ display: 'inline' }}
-                 component="span"
-                 variant="body2"
-                 color="text.primary"
-               >
-                {transaction.date_posted}
-               </Typography>
-              
-             </React.Fragment>
-             
-           }
+          
          />
        </ListItem>
        <Divider variant="inset" component="li" />
@@ -202,7 +213,7 @@ const [transaction,setTransaction] = React.useState({
         </Card>
           
         
-       
+       <br/>
        
         
   
@@ -218,22 +229,24 @@ const [transaction,setTransaction] = React.useState({
           <DialogContent>
            
           <div >
-              <br/>
+              
               <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>{Tranxs}</List>
   
       </div>
        
-       <Stack direction="row" spacing={2}>
+      
+  
+         
+          
+          </DialogContent>
+          <DialogActions>
+          <Stack direction="row" spacing={2}>
         <Button variant="outlined" onClick={handleClose} startIcon={<CancelIcon />}>
           Cancel
         </Button>
         
       </Stack>
-  
-         
-          
-          </DialogContent>
-         
+        </DialogActions>
         </Dialog>
      
      </div>

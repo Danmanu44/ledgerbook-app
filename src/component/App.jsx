@@ -139,7 +139,12 @@ export default function FormDialog() {
         
         <AddClient open={open} addClientHandler={addClientHandler}  />
        
-        <ClientList clients={clients} getClientId={removeClientHandler}  updateClientHandler={updateClientHandler} addTransactiontHandler={addTransactiontHandler} addWithdrawTransactiontHandler={addWithdrawTransactiontHandler}/>
+        <ClientList 
+        clients={clients}
+         getClientId={removeClientHandler} 
+          updateClientHandler={updateClientHandler}
+           addTransactiontHandler={addTransactiontHandler} 
+           addWithdrawTransactiontHandler={addWithdrawTransactiontHandler}/>
      
     </div>
   );
