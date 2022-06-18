@@ -46,6 +46,7 @@ export default function FormDialog(props) {
 });
 const [transaction,setTransaction] = React.useState({
   id:'',
+  client_id:'',
   date_posted:'',
   activity:'',
   amount:0,
@@ -65,11 +66,14 @@ const [transaction,setTransaction] = React.useState({
     // client.id= Number(new Date());
     // client.balance=0;
     console.log("###### Deposit "+transaction.amount);
-    transaction.activity="Deposit";
+    transaction.client_id= client.id;
+    transaction.activity="Credited";
     transaction.balance_before=client.balance;
     transaction.balance_after= Number(client.balance)+(Number(transaction.amount));
     transaction.date_posted= new Date();
     client.balance =transaction.balance_after;
+
+    
     
     props.updateTransaction(transaction,client);
     

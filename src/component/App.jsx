@@ -24,19 +24,34 @@ export default function FormDialog() {
     console.log(client);
     const response = await api.put(`clients/${client.id}`,client);
     console.log("########Updated data :"+response.data);
-    const{id,name,phoneNumber,email,balance} = response.data;
-    setClients(clients.map((client)=>{
-      return client.id === id? {...response.data}:clients;
-    }));
+    //const{id,name,phoneNumber,email,balance} = response.data;
+    const getAllClients = async()=>{
+      const allClients = await retrievedClients();
+    
+      if(allClients) setClients(allClients); 
+    }
+    getAllClients();
    
 
   }
 
   const addTransactiontHandler= async(transaction,client)=>{
     console.log("Add Transaction Handler "+transaction);
-    const response = await api.post("transactions",transaction.amount);
-    var balance = Number(client.balance) + Number(transaction.amount);
-      client.balance=balance;
+    const response = await api.post("transactions",transaction);
+   
+      updateClientHandler(client);
+    if(response.status.ok){
+      
+    }
+
+    setClients([...clients,response.data]);
+   
+
+  }
+  const addWithdrawTransactiontHandler=async(transaction,client)=>{
+    console.log("Add Transaction Handler "+transaction);
+    const response = await api.post("transactions",transaction);
+   
       updateClientHandler(client);
     if(response.status.ok){
       
@@ -124,7 +139,7 @@ export default function FormDialog() {
         
         <AddClient open={open} addClientHandler={addClientHandler}  />
        
-        <ClientList clients={clients} getClientId={removeClientHandler}  updateClientHandler={updateClientHandler} addTransactiontHandler={addTransactiontHandler}/>
+        <ClientList clients={clients} getClientId={removeClientHandler}  updateClientHandler={updateClientHandler} addTransactiontHandler={addTransactiontHandler} addWithdrawTransactiontHandler={addWithdrawTransactiontHandler}/>
      
     </div>
   );

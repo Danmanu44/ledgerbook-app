@@ -13,6 +13,9 @@ import DeleteIcon from '@mui/icons-material/DeleteForever';
 import Button from '@mui/material/Button';
 import UpdateClient from './UpdateClient'
 import Deposit from './Deposit';
+import Withdraw from './Withdraw';
+import Transactions from "./Transactions";
+
 
 
 const ClientCard = (props)=>{
@@ -24,6 +27,12 @@ const ClientCard = (props)=>{
 
     }
     const updateTransaction =(transaction,client)=>{
+      console.log("#### ClientCard"+transaction.amount);
+      props.updateTransactionHandler(transaction,client);
+      
+
+    }
+    const updateWithdrawTransaction =(transaction,client)=>{
       console.log("#### ClientCard"+transaction.amount);
       props.updateTransactionHandler(transaction,client);
       
@@ -87,7 +96,9 @@ const ClientCard = (props)=>{
         </CardContent> 
         <CardActions>
         
-        <UpdateClient client = {client} updateClient={updateClient}/><Deposit client = {client} updateTransaction={updateTransaction} transaction={transaction}/> <Button size="small" variant="outlined" onClick={()=>props.clickHandler(id) } sx={{ display: 'inline',color:'red', float:'right',marginLeft:'100px'}} endIcon={<DeleteIcon />}></Button>
+        <UpdateClient client = {client} updateClient={updateClient}/>
+        <Deposit client = {client} updateTransaction={updateTransaction} transaction={transaction}/>
+        <Withdraw client = {client} updateTransaction={updateWithdrawTransaction} transaction={transaction} /><Transactions client={client} /> <Button size="small" variant="outlined" onClick={()=>props.clickHandler(id) } sx={{ display: 'inline',color:'red', float:'right',marginLeft:'auto'}} endIcon={<DeleteIcon />}></Button>
            
       </CardActions>
       </Card>

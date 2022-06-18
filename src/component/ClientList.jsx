@@ -24,11 +24,18 @@ const ClientList =(props)=>{
    
 
   }
+
+
+  const updateWithdrawTransaction=(transaction,client)=>{
+    console.log("##### ClientList"+transaction.amount+client.name)
+    props.addWithdrawTransactiontHandler(transaction,client);
+
+  }
     const Clients=props.clients.map((client)=>{
         return (
            
             
-              <ClientCard client={client} clickHandler={deletClientHandler}  updateClientHandler={updateClient} updateTransactionHandler={updateTransaction} key={client.id}/>
+              <ClientCard client={client} clickHandler={deletClientHandler}  updateClientHandler={updateClient} updateTransactionHandler={updateTransaction}  updateWithdrawTransactionHandler={updateWithdrawTransaction} key={client.id}/>
         
             );
     });
