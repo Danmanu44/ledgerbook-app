@@ -17,6 +17,8 @@ import FormHelperText from '@mui/material/FormHelperText';
 import EditIcon from '@mui/icons-material/Edit'
 import SavingsRoundedIcon from '@mui/icons-material/SavingsRounded';
 import AtmRoundedIcon from '@mui/icons-material/AtmRounded';
+import Tooltip from '@mui/material/Tooltip';
+
 
 function MyFormHelperText() {
   const { focused } = useFormControl() || {};
@@ -124,8 +126,11 @@ const [transaction,setTransaction] = React.useState({
     <div>
      
         
+     <Tooltip title="Click to View Transactions ">
       
-      <Button variant='outlined' size='small' onClick={handleClickOpen} sx={{ display: 'inline',color:'blue', float:'right'}} endIcon={<AtmRoundedIcon />}></Button>
+     <Button variant='outlined' size='small' onClick={handleClickOpen} sx={{ display: 'inline',color:'blue', float:'right'}} endIcon={<AtmRoundedIcon />}>Debit</Button>
+ 
+    </Tooltip>
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Withdraw</DialogTitle>

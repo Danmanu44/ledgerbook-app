@@ -1,4 +1,4 @@
-import * as React from 'react';
+ import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -35,18 +35,41 @@ function MyFormHelperText() {
 export default function FormDialog(props) {
 
  
+  const  validateName=(name)=>{
+    if(name !=""){
+  
+        const wordCount= name.match(/(\w+)/g).length;
+        console.log((wordCount));
+
+        if(wordCount<2){
+          return false;
+        }
+        else{
+          return true;
+        }
+    }
+
+}
+
   const add = (e)=>{
     
-   
-  
     if(client.name==="" || client.phoneNumber===""){
       alert("Name and Phone Number must be provided!");
     }
+   else if(validateName(client.name)){
+    
+    
     client.id= Number(new Date());
     client.balance=0;
     props.addClientHandler(client);
     setClient({name:'',phoneNumber:'',email:''});
     handleClose();
+  
+
+   }
+   else{
+     alert("Enter FirstName ")
+   }
   
   }
  
@@ -108,7 +131,7 @@ const [client, setClient] = React.useState({
          id="tel"
          label="Full Name"
          value={client.name}
-      
+         required
          type="text"
          fullWidth
          variant="standard"
@@ -118,7 +141,7 @@ const [client, setClient] = React.useState({
         <TextField
                  
          value={client.phoneNumber}
-
+         required
          margin="dense"
          id="tel"
          label="Phone Number"
@@ -130,7 +153,7 @@ const [client, setClient] = React.useState({
         <TextField
        
          value={client.email}
-         
+         required
          margin="dense"
          id="name"
          label="Email Address"

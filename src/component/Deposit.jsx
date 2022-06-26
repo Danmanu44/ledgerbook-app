@@ -16,6 +16,8 @@ import FormControl, { useFormControl } from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import EditIcon from '@mui/icons-material/Edit'
 import SavingsRoundedIcon from '@mui/icons-material/SavingsRounded';
+import Tooltip from '@mui/material/Tooltip';
+
 
 
 
@@ -124,9 +126,12 @@ const [transaction,setTransaction] = React.useState({
   return (
     <div>
      
-        
+     <Tooltip title="Click to Deposit ">
       
-      <Button variant='outlined' size='small' onClick={handleClickOpen} sx={{ display: 'inline',color:'blue', float:'right'}} endIcon={<SavingsRoundedIcon />}></Button>
+      <Button variant='outlined' size='small' onClick={handleClickOpen} sx={{ display: 'inline',color:'blue', float:'right'}} endIcon={<SavingsRoundedIcon />}>Credit</Button>
+
+    </Tooltip>
+      
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Deposit</DialogTitle>

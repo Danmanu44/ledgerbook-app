@@ -7,10 +7,14 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import ClientCard from "./ClientCard";
-import { CardContent } from "@mui/material";
+import { Box, CardContent } from "@mui/material";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
+import {useSelector} from 'react-redux';
 const ClientList =(props)=>{
+
+ 
+  
   const deletClientHandler=(id)=>{
     console.log("####### id:"+id);
      props.getClientId(id);
@@ -28,19 +32,24 @@ const ClientList =(props)=>{
 
   const updateWithdrawTransaction=(transaction,client)=>{
     console.log("##### ClientList"+transaction.amount+client.name)
-    props.addWithdrawTransactiontHandler(transaction,client);
+    props.addTransactiontHandler(transaction,client);
 
   }
     const Clients=props.clients.map((client)=>{
         return (
            
-            
+               
               <ClientCard client={client} clickHandler={deletClientHandler}  updateClientHandler={updateClient} updateTransactionHandler={updateTransaction}  updateWithdrawTransactionHandler={updateWithdrawTransaction} key={client.id}/>
         
             );
     });
-    console.log(props);
-    return <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>{Clients}</List>
+    console.log(props);//<Container  maxWidth="md"><Grid container  justifyContent="center">
+
+    
+    return(<Box width="100%" alignContent>
+            <List sx={{ width: '100%',  bgcolor: 'background.paper' }}>{Clients}</List>
+       
+          </Box> )
 
 }
 export default ClientList;

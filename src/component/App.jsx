@@ -5,16 +5,33 @@ import Client from './Client';
 import AddClient from './AddClient';
 import ClientList from './ClientList';
 import api from '../api/client'
-import { Button } from '@mui/material';
-import UpdateClient from './UpdateClient'
+import { Button, CssBaseline } from '@mui/material';
+import UpdateClient from './UpdateClient';
+import {useSelector} from 'react-redux';
+
 export default function FormDialog() {
 
   const LOCAL_STORAGE_KEY = "clients";
+  const redClient= useSelector((state)=>state.allClients.clients);
+  console.log("######useState :"+redClient[0].name);
   const addClientHandler= async(client)=>{
-    console.log("update Handler "+client);
+  
     const response = await api.post("clients",client);
 
-    setClients([...clients,response.data]);
+    
+    if(response.status==201){
+      
+      const getAllClients = async()=>{
+        const allClients = await retrievedClients();
+      
+        if(allClients) setClients(allClients); 
+      }
+      getAllClients();
+     
+     
+    }
+
+   
    
 
   }
@@ -74,11 +91,15 @@ export default function FormDialog() {
   var [clients,setClients]=useState([]); //setting the init value as empty array
   var [open,setOpen]=useState(false);
  //retrieved from jsonserver using  axios 
-    
+ const sortClient = arr =>{
+  arr.sort((a,b)=>{return b-a})
+  return arr
+}
  const retrievedClients = async ()=>{
   const response = await api.get("clients");
- 
-  return  response.data;
+  const ClientsSort = response.data.sort();
+const ClientsReverse = ClientsSort.reverse();
+  return  ClientsReverse;
 
 }
  //console.log(api.get("clients"));
@@ -133,9 +154,9 @@ export default function FormDialog() {
  ]
   return (
     <div>
-      
+        <CssBaseline/>
         <AppBar />
-        <br></br>
+        
         
         <AddClient open={open} addClientHandler={addClientHandler}  />
        

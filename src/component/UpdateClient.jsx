@@ -14,7 +14,8 @@ import SaveIcon from '@mui/icons-material/Save';
 import Stack from '@mui/material/Stack';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
-import EditIcon from '@mui/icons-material/Edit'
+import EditIcon from '@mui/icons-material/Edit';
+import Tooltip from '@mui/material/Tooltip';
 
 
 
@@ -54,7 +55,14 @@ export default function FormDialog(props) {
   
   }
  
-
+  var formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'NGN',
+  
+    // These options are needed to round to whole numbers if that's what you want.
+    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+  });
   const bull = (
     <Box
       component="span"
@@ -99,9 +107,12 @@ const [client, setClient] = React.useState({
   return (
     <div>
      
-        
+     <Tooltip title="Click to View Transactions ">
       
-      <Button variant='outlined' size='small' onClick={handleClickOpen} sx={{ display: 'inline',color:'blue', float:'right'}} endIcon={<EditIcon />}></Button>
+     <Button variant='outlined' size='small' onClick={handleClickOpen} sx={{ display: 'inline',color:'blue', float:'right'}} endIcon={<EditIcon />}>Edit</Button>
+
+   </Tooltip>
+      
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Update Client</DialogTitle>

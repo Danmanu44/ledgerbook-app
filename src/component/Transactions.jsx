@@ -31,6 +31,8 @@ import Avatar from '@mui/material/Avatar';
 import user from '..//images/john.png';
 
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import Tooltip from '@mui/material/Tooltip';
+
 
 
 
@@ -72,7 +74,14 @@ const [transaction,setTransaction] = React.useState({
   note:''
 })
  
+var formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'NGN',
 
+  // These options are needed to round to whole numbers if that's what you want.
+  //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+  //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+});
 
 
 
@@ -175,7 +184,7 @@ const [transaction,setTransaction] = React.useState({
                 color="blue"
               >
                Amount 
-                : {transaction.amount}
+                : {formatter.format(transaction.amount)}
               </Typography>
               <Typography
                 sx={{ color:'blue' }}
@@ -184,7 +193,7 @@ const [transaction,setTransaction] = React.useState({
                
               >
                Previous Balance 
-                :{transaction.balance_before}
+                :{formatter.format(transaction.balance_before)}
               </Typography>
               <Typography
                 sx={{  }}
@@ -193,7 +202,7 @@ const [transaction,setTransaction] = React.useState({
                 color="blue"
               >
                Balance 
-                : {transaction.balance_after}
+                : {formatter.format(transaction.balance_after)}
               </Typography>
               
               
@@ -223,9 +232,13 @@ const [transaction,setTransaction] = React.useState({
   });
   return(
     <div>
-    <Button variant='outlined' size='small' onClick={handleClickOpen} sx={{ display: 'inline',color:'blue', float:'right'}} endIcon={<RemoveRedEyeIcon />}></Button>
+       <Tooltip title="Click to View Transactions ">
+      
+       <Button variant='outlined' size='small' onClick={handleClickOpen} sx={{ display: 'inline',color:'blue', float:'right'}} endIcon={<RemoveRedEyeIcon />}>Info</Button>
+
+    </Tooltip>
     <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Deposit</DialogTitle>
+          <DialogTitle>Transactions</DialogTitle>
           <DialogContent>
            
           <div >
