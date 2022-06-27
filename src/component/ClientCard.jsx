@@ -33,15 +33,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 const ClientCard = (props)=>{
-  const useStyles= makeStyles((theme)=>({
-    container:{
-      backgroundColor:'red',
-      padding:theme.spacing(8,0,6)
+  // const useStyles= makeStyles((theme)=>({
+  //   container:{
+  //     backgroundColor:'red',
+  //     padding:theme.spacing(8,0,6)
       
   
-    }
+  //   }
   
-  }));
+  // }));
   
   const redClient= useSelector((state)=>state.allClients.clients);
 
