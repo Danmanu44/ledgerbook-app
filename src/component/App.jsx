@@ -9,7 +9,9 @@ import {useSelector} from 'react-redux';
 
 export default function FormDialog() {
 
-  const LOCAL_STORAGE_KEY = "clients";
+  const LOCAL_STORAGE_KEY_CLIENT = "clients";
+  const LOCAL_STORAGE_KEY_TRANSACTIONS = "transactions";
+
   const redClient= useSelector((state)=>state.allClients.clients);
   console.log("######useState :"+redClient[0].name);
   const addClientHandler= async(client)=>{
