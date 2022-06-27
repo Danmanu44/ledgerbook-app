@@ -9,11 +9,7 @@ import { CardContent } from "@mui/material";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import user from '..//images/john.png';
-import DeleteIcon from '@mui/icons-material/DeleteForever';
-import Button from '@mui/material/Button';
-import UpdateClient from './UpdateClient'
-import Deposit from './Deposit';
-import Withdraw from './Withdraw';
+
 
 
 

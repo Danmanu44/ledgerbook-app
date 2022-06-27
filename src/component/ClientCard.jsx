@@ -3,12 +3,10 @@ import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { CardContent, Grid } from "@mui/material";
 import {Card,Box} from '@mui/material';
 import CardActions from '@mui/material/CardActions';
-import user from '..//images/john.png';
 import DeleteIcon from '@mui/icons-material/DeleteForever';
 import Button from '@mui/material/Button';
 import UpdateClient from './UpdateClient'
@@ -23,8 +21,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import {useSelector} from 'react-redux';
-import { Container } from "@mui/system";
-import { ClassNames } from "@emotion/react";
+
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {

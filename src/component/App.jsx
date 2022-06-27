@@ -1,12 +1,10 @@
 import  React ,{useState,useEffect} from 'react';
 
 import AppBar from './AppBar';
-import Client from './Client';
 import AddClient from './AddClient';
 import ClientList from './ClientList';
 import api from '../api/client'
-import { Button, CssBaseline } from '@mui/material';
-import UpdateClient from './UpdateClient';
+import {  CssBaseline } from '@mui/material';
 import {useSelector} from 'react-redux';
 
 export default function FormDialog() {

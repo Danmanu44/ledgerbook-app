@@ -2,19 +2,15 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Client from './Client';
+
 import CancelIcon from '@mui/icons-material/Cancel';
 import SaveIcon from '@mui/icons-material/Save';
 import Stack from '@mui/material/Stack';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
-import EditIcon from '@mui/icons-material/Edit'
 import SavingsRoundedIcon from '@mui/icons-material/SavingsRounded';
 import Tooltip from '@mui/material/Tooltip';
 
