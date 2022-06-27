@@ -7,10 +7,11 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import ClientCard from "./ClientCard";
-import { Box, CardContent } from "@mui/material";
+import { Box, CardContent, Grid } from "@mui/material";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import {useSelector} from 'react-redux';
+import { Container } from "@mui/system";
 const ClientList =(props)=>{
 
  
@@ -46,9 +47,18 @@ const ClientList =(props)=>{
     console.log(props);//<Container  maxWidth="md"><Grid container  justifyContent="center">
 
     
-    return(<Box width="100%" alignContent>
-            <List sx={{ width: '100%',  bgcolor: 'background.paper' }}>{Clients}</List>
+    return(<Box alignContent="flex-start" >
+       <Container  >
+       <List sx={{ width: '100%',  bgcolor: 'background.paper' }}>
+       <Grid flexDirection={'column'} container  justifyContent="center">
+       {Clients}
+       </Grid>
+        
        
+        
+      </List>
+     
+     </Container>
           </Box> )
 
 }

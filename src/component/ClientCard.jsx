@@ -87,14 +87,11 @@ const ClientCard = (props)=>{
     });
    //const classes= useStyles();
     return (
-        <div  >
-            <br/>
-     <Box  alignContent="flex-start">
-       <Container  maxWidth="md">
-
-       <Grid container  justifyContent="center">
-        <Grid item  spacing={4}>
-        <Card ><CardContent> 
+        
+     <Box  sx={{marginBottom:'16px'}} alignContent="flex-start">
+      
+        <Card sx={{height:'100%',display:'flex',flexDirection:'column'}} >
+          <CardContent sx={{flexGrow:'1'}}> 
         <ListItem alignItems="flex-start">
        <ListItemAvatar>
        <AccountCircleRoundedIcon  sx={{width:'70px' ,height:'70px', marginRight:'5px',color:'blue'}}/>
@@ -180,14 +177,12 @@ const ClientCard = (props)=>{
       </CardActions>
       </Card>
 
-        </Grid>
+        
 
-     </Grid>
-
-       </Container>
+     
    </Box>
 
-    </div>
+  
     );
 }
 export default ClientCard;
