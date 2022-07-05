@@ -84,7 +84,7 @@ const ClientCard = (props)=>{
    //const classes= useStyles();
     return (
         
-     <Box  sx={{marginBottom:'16px'}} alignContent="flex-start">
+     <Box  sx={{marginBottom:'16px',color:'transparent',marginTop:'3vh'}} alignContent="flex-start">
       
         <Card sx={{height:'100%',display:'flex',flexDirection:'column'}} >
           <CardContent sx={{flexGrow:'1'}}> 

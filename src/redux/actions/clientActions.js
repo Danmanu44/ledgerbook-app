@@ -1,5 +1,5 @@
 import { ActionTypes } from "../constants/actionTypes"
-export const setClient=(clients)=>{
+export const setClients=(clients)=>{
     return {
         type:ActionTypes.SET_CLIENTS,
         payload:clients

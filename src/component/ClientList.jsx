@@ -42,7 +42,7 @@ const ClientList =(props)=>{
     
     return(<Box alignContent="flex-start" >
        <Container  >
-       <List sx={{ width: '100%',  bgcolor: 'background.paper' }}>
+       <List sx={{ width: '100%',  marginTop:'5vh' }}>
        <Grid flexDirection={'column'} container  justifyContent="center">
        {Clients}
        </Grid>

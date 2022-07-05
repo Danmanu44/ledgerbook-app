@@ -11,7 +11,10 @@ import SaveIcon from '@mui/icons-material/Save';
 import Stack from '@mui/material/Stack';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
+import Add from '@mui/icons-material/PersonAddOutlined';
 
+import {useSelector} from 'react-redux';
+import { useTheme } from '@mui/material/styles';
 
 
 function MyFormHelperText() {
@@ -108,13 +111,15 @@ const [client, setClient] = React.useState({
     setOpen(false);
     console.log(client);
   };
+  const theme = useTheme();
 
   return (
     <div>
      
         <br></br>
-      <Button  variant="outlined" onClick={handleClickOpen}>
-        Add New Client
+      <Button  sx={{backgroundColor:'white',boxShadow:theme.shadows[2],color:theme.palette.info.darker,position:'fixed',zIndex:3,border:'2px solid black' ,height:'65px',marginLeft:'10px',marginTop:'5vh'}}  onClick={handleClickOpen}>
+        <Add sx={{fontSize:'50px'}}></Add>
+        Add Client
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add New Client</DialogTitle>
