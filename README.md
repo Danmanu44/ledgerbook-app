@@ -1,6 +1,9 @@
 # Getting Started with Ledger Book-App 
 
-This project was design to help individual to track his client debt and contact info
+This project was design to help individual to track his client debt and contact info.
+
+# Implementation
+This project is a CI/CD project implemented using react
 
 ## DataAccess
 
