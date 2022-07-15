@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as ServiceWorkerRegistration from './serviceWorkerRegistration';
-import App from './component/App';
-import AppBar from './component/AppBar'
+import App from './components/App';
+import AppBar from './components/AppBar'
 import {Provider} from 'react-redux';
 import store from "./redux/store";
 import { BrowserRouter } from 'react-router-dom';

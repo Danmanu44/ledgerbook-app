@@ -11,9 +11,9 @@ import SaveIcon from '@mui/icons-material/Save';
 import Stack from '@mui/material/Stack';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
-import EditIcon from '@mui/icons-material/Edit';
-import Tooltip from '@mui/material/Tooltip';
 
+import AtmRoundedIcon from '@mui/icons-material/AtmRounded';
+import Tooltip from '@mui/material/Tooltip';
 
 
 function MyFormHelperText() {
@@ -33,33 +33,54 @@ function MyFormHelperText() {
 
 export default function FormDialog(props) {
 
+  const [client, setClient] = React.useState({
+    id:'',
+  name: '',
+  phoneNumber: '',
+  email: '',
+  balance: 0
  
+});
+const [transaction,setTransaction] = React.useState({
+  id:'',
+  client_id:'',
+  date_posted:'',
+  activity:'',
+  amount:0,
+  balance_before:0,
+  balance_after:0,
+  note:''
+})
  
   const update = (e)=>{
     
    
   
-    if(client.name==="" || client.phoneNumber===""){
-      alert("Name and Phone Number must be provided!");
+    if(transaction.amount==="" ){
+      alert("Debit Amount must be provided!");
     }
     else{
     // client.id= Number(new Date());
     // client.balance=0;
-    props.updateClient(client);
-    setClient({name:'',phoneNumber:'',email:''});
+   
+    transaction.client_id= client.id;
+    transaction.activity="Debited";
+    transaction.balance_before=client.balance;
+    transaction.balance_after= Number(client.balance)-(Number(transaction.amount));
+    transaction.date_posted= new Date();
+    client.balance =transaction.balance_after;
+    transaction.client_id= client.id;
+    
+    props.updateTransaction(transaction,client);
+    
+
+    setTransaction({id:'',date_posted:'', note:'', activity:'',amount:'',balance_before:'',balance_after:''});
     handleClose();
     }
   
   }
  
-  var formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'NGN',
-  
-    // These options are needed to round to whole numbers if that's what you want.
-    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-  });
+
   const bull = (
     <Box
       component="span"
@@ -68,16 +89,11 @@ export default function FormDialog(props) {
       •
     </Box>
   );
-const [client, setClient] = React.useState({
-      id:'',
-    name: '',
-    phoneNumber: '',
-    email: '',
-    balance: 0
-   
-  });
+
   const handleChange = (prop) => (event) => {
-    setClient({ ...client, [prop]: event.target.value });
+    setTransaction({ ...transaction, [prop]: event.target.value });
+    console.log(transaction.amount)
+    
     
   };
 
@@ -92,6 +108,7 @@ const [client, setClient] = React.useState({
 
   const handleClickOpen = () => {
     setClient(props.client);
+   
     setOpen(true);
 
   };
@@ -104,15 +121,15 @@ const [client, setClient] = React.useState({
   return (
     <div>
      
-     <Tooltip title="Click to View Transactions ">
+        
+     <Tooltip title="Click to withdraw ">
       
-     <Button variant='outlined' size='small' onClick={handleClickOpen} sx={{ display: 'inline',color:'blue', float:'right'}} endIcon={<EditIcon />}>Edit</Button>
-
-   </Tooltip>
-      
+     <Button variant='outlined' size='small' onClick={handleClickOpen} sx={{ display: 'inline',color:'blue', float:'right'}} endIcon={<AtmRoundedIcon />}>Withdraw</Button>
+ 
+    </Tooltip>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Update Client</DialogTitle>
+        <DialogTitle>Withdraw</DialogTitle>
         <DialogContent>
          
         <form onSubmit={update}>
@@ -123,7 +140,7 @@ const [client, setClient] = React.useState({
          id="tel"
          label="Full Name"
          value={client.name}
-      
+         disabled
          type="text"
          fullWidth
          variant="standard"
@@ -133,7 +150,7 @@ const [client, setClient] = React.useState({
         <TextField
                  
          value={client.phoneNumber}
-
+         disabled
          margin="dense"
          id="tel"
          label="Phone Number"
@@ -145,15 +162,40 @@ const [client, setClient] = React.useState({
         <TextField
        
          value={client.email}
-         
+         disabled
          margin="dense"
-         id="name"
+         id="email"
          label="Email Address"
          type="email"
          fullWidth
          variant="standard"
          onChange={handleChange('email')}
        />
+        <TextField
+       
+       value={transaction.amount}
+       
+       margin="dense"
+       id="amount"
+       label="Amount Deposited"
+       type="number"
+       fullWidth
+       variant="standard"
+       onChange={handleChange('amount')}
+     />
+     <TextField
+       
+       value={transaction.note}
+       
+       margin="dense"
+       id="note"
+       label="Note"
+       type="text"
+       fullWidth
+       variant="standard"
+       onChange={handleChange('note')}
+     />
+       
         
      </FormControl>
        

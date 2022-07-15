@@ -10,11 +10,11 @@ import * as  clientActions  from '../redux/actions/clientActions';
 // import {BrowserRouter, BrowserRouter as Router,Route,Routes,Switch} from 'react-router-dom';
 
 import Router from '../routes';
-import  Home  from '../component/Home';
-import About  from '../component/About';
-import Profile from '../component/Profile';
-import Appcopy from '../component/Appcopy';
-import Login from '../component/Login';
+import  Home  from './Home';
+import About  from './About';
+import Profile from './Profile';
+import Appcopy from './Appcopy';
+import Login from './Login';
 import NotFound from './NotFound';
 import Post from './Post';
 import ThemeProvider from '../theme';
@@ -173,7 +173,7 @@ export default function FormDialog() {
        <ThemeProvider>
        <CssBaseline/>
        
-       <AppBar />
+       {/* <AppBar /> */}
        
      {/* <Router>
         <Routes>

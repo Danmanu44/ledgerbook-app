@@ -21,13 +21,13 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import {useSelector} from 'react-redux';
+import { useTheme } from '@mui/material';
 
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
 
 const ClientCard = (props)=>{
   // const useStyles= makeStyles((theme)=>({
@@ -39,8 +39,11 @@ const ClientCard = (props)=>{
   //   }
   
   // }));
+  const theme = useTheme();
+
   
   const redClient= useSelector((state)=>state.allClients.clients);
+
 
   const client = props.client;
   const transaction = props.transaction;
@@ -84,13 +87,13 @@ const ClientCard = (props)=>{
    //const classes= useStyles();
     return (
         
-     <Box  sx={{marginBottom:'16px',color:'transparent',marginTop:'3vh'}} alignContent="flex-start">
+     <Box  sx={{marginBottom:'16px'}} alignContent="flex-start">
       
-        <Card sx={{height:'100%',display:'flex',flexDirection:'column'}} >
+        <Card sx={{height:'100%',display:'flex',flexDirection:'column',boxShadow:theme.shadows[3]}} >
           <CardContent sx={{flexGrow:'1'}}> 
         <ListItem alignItems="flex-start">
        <ListItemAvatar>
-       <AccountCircleRoundedIcon  sx={{width:'70px' ,height:'70px', marginRight:'5px',color:'blue'}}/>
+       <AccountCircleRoundedIcon  sx={{width:'70px' ,height:'70px', marginRight:'5px'}}/>
        
          
        </ListItemAvatar>
@@ -128,7 +131,7 @@ const ClientCard = (props)=>{
              </Typography>
             
              <Typography
-              color="blue"
+              color={theme.palette.secondary.dark}
              >
               Account Balance : {formatter.format(balance)}
              

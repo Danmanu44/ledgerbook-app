@@ -4,7 +4,7 @@ import List from '@mui/material/List';
 import ClientCard from "./ClientCard";
 import { Box, CardContent, Grid } from "@mui/material";
 
-import { Container } from "@mui/system";
+import { Container } from "@mui/material";
 const ClientList =(props)=>{
 
  
@@ -40,7 +40,7 @@ const ClientList =(props)=>{
     console.log(props);//<Container  maxWidth="md"><Grid container  justifyContent="center">
 
     
-    return(<Box alignContent="flex-start" >
+    return(<Box alignContent="flex-start" xs='12' >
        <Container  >
        <List sx={{ width: '100%',  marginTop:'5vh' }}>
        <Grid flexDirection={'column'} container  justifyContent="center">
